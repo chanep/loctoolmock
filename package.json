@@ -1,0 +1,28 @@
+{
+  "name": "loctoolmock",
+  "version": "1.0.0",
+  "description": "Loctool Mock",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chanep/loctoolmock.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/chanep/loctoolmock/issues"
+  },
+  "homepage": "https://github.com/chanep/loctoolmock#readme",
+  "dependencies": {
+    "bluebird": "^3.4.7",
+    "body-parser": "^1.15.2",
+    "express": "^4.14.0",
+    "express-qs-parser": "0.0.1",
+    "express-session": "^1.14.2",
+    "jsonwebtoken": "^7.2.1",
+    "request": "^2.79.0"
+  }
+}
