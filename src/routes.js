@@ -11,7 +11,7 @@ router.post('/', function(req, res, next){
         console.log("Job received: ", req.body);
         let languages = req.body.targetLanguages;
         let jwtAudience = req.body.jwtAudience;
-        let jobId = req.body.jobId;
+        let jobId = req.body.jobName;
         let pushURL = req.body.pushURL;
         let strings = req.body.strings;
 
@@ -75,6 +75,7 @@ function sendTranslation(translation, pushUrl, audience) {
         console.log("");
         req.post('/', {body: translation}, 
             function (err, res, body) {
+                console.log("Response", body);
                 if(err){
                     console.log(`Error sending translation ${translation.id}`,err);
                 } else {
