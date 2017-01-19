@@ -75,7 +75,7 @@ function sendTranslation(translation, pushUrl, audience) {
         console.log("");
         req.post('/', {body: translation}, 
             function (err, res, body) {
-                console.log("Response", body);
+                console.log("Response: ", body);
                 if(err){
                     console.log(`Error sending translation ${translation.id}`,err);
                 } else {
