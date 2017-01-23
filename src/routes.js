@@ -43,9 +43,13 @@ function translate(jobId, language, strings){
 
     for(let str of strings){
         let tr = {
-            key: str.key,
-            translation: 'X' + str.value.substring(1)
+            key: str.key
         };
+        
+        if(str.value.length > 0)
+            tr.translation = 'X' + str.value.substring(1);
+        else
+            tr.translation = str.value;
 
         translation.translations.push(tr);
     }
