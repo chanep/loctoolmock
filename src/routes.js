@@ -5,6 +5,40 @@ const jwt = require('jsonwebtoken');
 const express = require('express');
 const router = express.Router();
 
+const langMappings = {
+    en_gb: "en-GB",
+    es_ar: "es-AR",
+    de_de: "de",
+    fr_fr: "fr",
+    nl_nl: "nl",
+    pt_br: "pt-BR",
+    it_it: "it",
+    es_la: "es-419",
+    zh_cn: "zh-Hans",
+    cs_cz: "cs",
+    da_dk: "da",
+    ca_es: "ca",
+    es_es: "es-ES",
+    el_gr: "el",
+    el_el: "el",
+    hu_hu: "hu",
+    ja_jp: "ja",
+    ko_kr: "ko",
+    es_mx: "es-MX",
+    no_no: "no",
+    pl_pl: "pl",
+    pt_pt: "pt-PT",
+    en_ro: "en-GB",
+    ru_ru: "ru",
+    en_sa: "en-GB",
+    sv_se: "sv",
+    en_sk: "en-GB",
+    th_th: "th",
+    tr_tr: "tr",
+    zh_tw: "zh-Hans",
+    en_us: "en",
+    en_xa: "en_XA"
+};
 
 router.post('/', function(req, res, next){
     try{
@@ -16,7 +50,8 @@ router.post('/', function(req, res, next){
         let strings = req.body.strings;
 
         for(let language of languages){
-            let translation = translate(jobId, language, strings);
+            let respLanguage = langMappings[language];
+            let translation = translate(jobId, respLanguage, strings);
             sendTranslation(translation, pushURL, jwtAudience);
         }
         console.log(`Job ${jobId} accepted\n`);
