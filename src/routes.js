@@ -51,6 +51,9 @@ router.post('/', function(req, res, next){
 
         for(let language of languages){
             let respLanguage = langMappings[language];
+            if(!respLanguage){
+                respLanguage = language;
+            }
             let translation = translate(jobId, respLanguage, strings);
             sendTranslation(translation, pushURL, jwtAudience);
         }
