@@ -4,6 +4,7 @@ const request = require('request');
 const jwt = require('jsonwebtoken');
 const express = require('express');
 const router = express.Router();
+const DELAY = 10000;
 
 const langMappings = {
     en_gb: "en-GB",
@@ -97,7 +98,7 @@ function translate(jobId, language, strings){
 
 
 function sendTranslation(translation, pushUrl, audience) {
-    P.delay(10000).then(() => {
+    P.delay(DELAY).then(() => {
         let reqDefaults = {
             baseUrl: pushUrl,
             json: true,
