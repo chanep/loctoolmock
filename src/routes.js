@@ -85,10 +85,22 @@ function translate(jobId, language, strings){
             key: str.key
         };
         
-        if(str.value.length > 0)
-            tr.translation = 'X' + str.value.substring(1);
-        else
+        if(str.value.length > 0){
+            if(str.value[0] != '<'){
+                tr.translation = 'X' + str.value.substring(1);
+            } else{
+                let i = str.value.indexOf('>');
+                if(i < (str.value.length - 1)){
+                    tr.translation = str.value.substr(0, i + 1) + 'X' + str.value.substr(i + 2);
+                } else{
+                    tr.translation = str.value;
+                }
+            }
+        }
+        else{
             tr.translation = str.value;
+        }
+            
 
         translation.translations.push(tr);
     }
