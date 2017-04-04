@@ -46,7 +46,8 @@ router.post('/', function(req, res, next){
         console.log("Job received: ", req.body);
         let languages = req.body.targetLanguages;
         let jwtAudience = req.body.jwtAudience;
-        let jobId = req.body.jobName;
+        let jobName = req.body.jobName;
+        let jobId = req.body.jobId;
         let pushURL = req.body.pushURL;
         let strings = req.body.strings;
 
@@ -58,7 +59,7 @@ router.post('/', function(req, res, next){
             let translation = translate(jobId, respLanguage, strings);
             sendTranslation(translation, pushURL, jwtAudience);
         }
-        console.log(`Job ${jobId} accepted\n`);
+        console.log(`Job ${jobName} accepted\n`);
         res.status(200).send({
                 id: jobId,
                 responseMessage: "Request received and accepted."
