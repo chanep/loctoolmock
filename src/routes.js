@@ -51,13 +51,15 @@ router.post('/', function(req, res, next){
         let pushURL = req.body.pushURL;
         let strings = req.body.strings;
 
+        let i = 0;
         for(let language of languages){
             let respLanguage = langMappings[language];
             if(!respLanguage){
                 respLanguage = language;
             }
             let translation = translate(jobId, respLanguage, strings);
-            sendTranslation(translation, pushURL, jwtAudience);
+            sendTranslation(translation, pushURL, jwtAudience, DELAY + i*1000);
+            i++;
         }
         console.log(`Job ${jobName} accepted\n`);
         res.status(200).send({
@@ -110,8 +112,8 @@ function translate(jobId, language, strings){
 }
 
 
-function sendTranslation(translation, pushUrl, audience) {
-    P.delay(DELAY).then(() => {
+function sendTranslation(translation, pushUrl, audience, delay) {
+    P.delay(delay).then(() => {
         let reqDefaults = {
             baseUrl: pushUrl,
             json: true,
